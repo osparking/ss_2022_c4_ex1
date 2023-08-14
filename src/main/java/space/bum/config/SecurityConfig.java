@@ -9,6 +9,9 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		return http.httpBasic().and().build();
+		return http.httpBasic().and()
+				// .authenticationManager(...) or Add an AuthenticationManager bean
+				// .authenticationProvider(...) ; adds more to the provider collection
+				.build();
 	}
 }
