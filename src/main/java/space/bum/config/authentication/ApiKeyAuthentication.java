@@ -5,19 +5,27 @@ import java.util.Collection;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public class ApiKeyAuthentication implements Authentication{
 
+	private final String key;
+	private boolean authenticated;
+
+	public String getKey() {
+		return key;
+	}
+	
 	@Override
 	public boolean isAuthenticated() {
-		// TODO Auto-generated method stub
-		return false;
+		return authenticated;
 	}
 
 	@Override
-	public void setAuthenticated(boolean isAuthenticated)
-			throws IllegalArgumentException {
+	public void setAuthenticated(boolean authenticated) {
 		// TODO Auto-generated method stub
-		
+		this.authenticated = authenticated;
 	}
 	
 	@Override
