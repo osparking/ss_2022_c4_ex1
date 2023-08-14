@@ -9,6 +9,6 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		return http.build();
+		return http.httpBasic().and().build();
 	}
 }
