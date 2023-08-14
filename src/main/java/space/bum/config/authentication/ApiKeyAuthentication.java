@@ -2,6 +2,8 @@ package space.bum.config.authentication;
 
 import java.util.Collection;
 
+import javax.security.auth.Subject;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -56,6 +58,12 @@ public class ApiKeyAuthentication implements Authentication{
 	public Object getPrincipal() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean implies(Subject subject) {
+		// TODO Auto-generated method stub
+		return Authentication.super.implies(subject);
 	}
 
 }
