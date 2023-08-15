@@ -28,6 +28,11 @@ public class ApiKeyFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		var manager = new CustomAuthenticationManager(key);
 		var requestKey = request.getHeader("x-api-key");
+		
+		if ("null".equals(requestKey) || requestKey == null) {
+			filterChain.doFilter(request, response); // 언젠가 호출해야...
+		}
+		
 		var auth = new ApiKeyAuthentication(requestKey);
 
 		try {
