@@ -20,6 +20,8 @@ public class SecurityConfig {
 		return http.httpBasic()
 				.and()
 				.addFilterBefore(new ApiKeyFilter(key), BasicAuthenticationFilter.class)
+				.authorizeRequests().anyRequest().authenticated() // authorization
+				.and()
 				// .authenticationManager(...) or Add an AuthenticationManager bean
 				// .authenticationProvider(...) ; adds more to the provider collection
 				.build();
