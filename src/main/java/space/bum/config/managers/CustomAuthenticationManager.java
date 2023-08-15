@@ -8,15 +8,15 @@ import lombok.AllArgsConstructor;
 import space.bum.config.providers.ApiKeyProvider;
 
 @AllArgsConstructor
-public class CustomAuthenticationManager implements AuthenticationManager{
+public class CustomAuthenticationManager implements AuthenticationManager {
 
 	private final String key;
-	
+
 	@Override
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
 		var provider = new ApiKeyProvider(key);
-		
+
 		if (provider.supports(authentication.getClass())) {
 			return provider.authenticate(authentication);
 		}

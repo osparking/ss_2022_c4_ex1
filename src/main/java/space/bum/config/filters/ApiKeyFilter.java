@@ -27,7 +27,7 @@ public class ApiKeyFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request,
 			HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		var manager = new CustomAuthenticationManager();
+		var manager = new CustomAuthenticationManager(key);
 		var auth = new ApiKeyAuthentication(key);
 
 		try {
