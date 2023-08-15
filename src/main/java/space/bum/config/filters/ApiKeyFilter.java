@@ -20,7 +20,6 @@ import space.bum.config.managers.CustomAuthenticationManager;
 @AllArgsConstructor
 public class ApiKeyFilter extends OncePerRequestFilter {
 
-	@Value("${the.key}")
 	private final String key;
 
 	@Override
@@ -28,7 +27,8 @@ public class ApiKeyFilter extends OncePerRequestFilter {
 			HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		var manager = new CustomAuthenticationManager(key);
-		var auth = new ApiKeyAuthentication(key);
+		var requestKey = request.getHeader("x-api-key");
+		var auth = new ApiKeyAuthentication(requestKey);
 
 		try {
 			var a = manager.authenticate(auth);
